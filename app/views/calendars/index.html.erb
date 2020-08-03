@@ -6,12 +6,12 @@
     <%= f.submit '保存' %>
   <% end %>
 </div>
-
-<div class=calendar>
+<div>
+  <div class=calendar>
     <% @week_days.each do |day| %>
       <div class='item'>
         <div class='date'>
-          <%=day[:month] %>/<%=day[:date] %><%=day[:day]%>
+          <% day[:month] %>/<% day[:date] %>
         </div>
         <ul class='content'>
           <% day[:plan].each do |plan| %>
@@ -20,6 +20,5 @@
         </ul>
       </div>
     <% end %>
+  </div>
 </div>
-
-
