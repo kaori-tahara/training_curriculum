@@ -40,6 +40,7 @@ class CalendarsController < ApplicationController
         plans.push(plan.plan) if plan.date == @todays_date + x
       end
       days = { month: (@todays_date + x).month, date: (@todays_date+x).day, day:(wdays[(@todays_date+x).wday]), plans: plans}
+
       @week_days.push(days)
     end
 
