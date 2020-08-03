@@ -2,9 +2,8 @@ class CalendarsController < ApplicationController
 
   # １週間のカレンダーと予定が表示されるページ
   def index
-   get_week
+   get_Week
    @plan = Plan.new
-   @week_days = Plan.all
   end
 
   # 予定の保存
@@ -15,7 +14,7 @@ class CalendarsController < ApplicationController
 
   private
   def plan_params
-    params.require(:calendars).permit(:date, :plan)
+    params.require(:plan).permit(:date,:plan)
   end
 
   def get_Week
@@ -34,9 +33,23 @@ class CalendarsController < ApplicationController
       plan = @plans.map do |plan|
         plans.push(plan.plan) if plan.date == @todays_date + x
       end
-      days = { month: (@todays_date + x).month, date: (@todays_date+x).day, plans: plans}
+      days = { month: (@todays_date + x).month, date: (@todays_date+x).day, day:(wdays[(@todays_date+x).wday]), plans: plans}
       @week_days.push(days)
     end
 
   end
 end
+
+
+# wdays[(@todays_date + x).wday]
+# # wdays[1]
+# wdays = ['(日)','(月)','(火)','(水)','(木)','(金)','(土)']
+# wdays[(@todays_date + x).wday]
+# wdays[1]
+# wdays[2]　　xは7timesのブロック変数で曜日の回数を表している
+
+# (@todays_date + x).wday
+# (1 + 1) * 3 = 
+
+# プライベートにget_weekを入れているのは、見やすくするため。プライベートの下にメゾットをおいても、ok
+# メゾット名を呼び出して使える。
