@@ -4,20 +4,17 @@ class CalendarsController < ApplicationController
   def index
    get_week
    @plan = Plan.new
-
   end
 
   # 予定の保存
   def create
     Plan.create(plan_params)
     redirect_to action: :index
-     
   end
 
   private
-
   def plan_params
-    params.require(:plan).permit(:date,:plan)
+    params.require(:calendars).permit(:date, :plan)
   end
 
 
@@ -33,7 +30,7 @@ class CalendarsController < ApplicationController
     @week_days = []
 
     @plans = Plan.where(date: @todays_date..@todays_date + 7)
-  
+
     7.times do |x|
       plans = []
       plan = @plans.map do |plan|
