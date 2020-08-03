@@ -2,7 +2,7 @@ class CalendarsController < ApplicationController
 
   # １週間のカレンダーと予定が表示されるページ
   def index
-   get_week
+   get_Week
    @plan = Plan.new
   end
 
@@ -39,3 +39,17 @@ class CalendarsController < ApplicationController
 
   end
 end
+
+
+# wdays[(@todays_date + x).wday]
+# # wdays[1]
+# wdays = ['(日)','(月)','(火)','(水)','(木)','(金)','(土)']
+# wdays[(@todays_date + x).wday]
+# wdays[1]
+# wdays[2]　　xは7timesのブロック変数で曜日の回数を表している
+
+# (@todays_date + x).wday
+# (1 + 1) * 3 = 
+
+# プライベートにget_weekを入れているのは、見やすくするため。プライベートの下にメゾットをおいても、ok
+# メゾット名を呼び出して使える。
